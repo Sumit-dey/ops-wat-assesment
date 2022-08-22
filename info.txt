@@ -1,0 +1,31 @@
+Problem Description: Generate a simple program to scan a file against our metadefender.opswat.com API. OPSWAT online help contains details of our publicly available API along with sample code that shows how to scan a file. However, it is costly to multi-scan a file so we would like you to implement a hash lookup prior to deciding to upload a file, either way you should retrieve results and display them. Please read through the documentation and sample code found at https://onlinehelp.opswat.com/mdcloud/2._Public_APIs.html to perform the following logic.
+
+1. Calculate the hash of the given samplefile.txt
+2. Perform a hash lookup against metadefender.opswat.com and see if their are previously cached results for the file
+3. If results found then skip to 6
+4. If results not found then upload the file, receive a data_id
+5. Repeatedly pull on the data_id to retrieve results
+6. Display results in format below
+
+You should also have some basic error handling for common HTTP results, but its not necessary to account for every idiosyncrocy of our API. You can show any errors to the standard error and exit the application.
+
+SAMPLE INPUT COMMAND: upload_file samplefile.txt
+
+SAMPLE OUTPUT:
+
+filename: samplefile.txt
+overall_status: Clean
+
+engine: Ahnlab
+thread_found: SomeBadMalwareWeFound
+scan_result: 1
+def_time: 2017-12-05T13:54:00.000Z
+
+engine: Cyren
+thread_found: Clean
+scan_result: 0
+def_time: 2017-12-05T17:43:00.000Z
+
+<repeats for each engine>
+
+END
